@@ -1,6 +1,6 @@
 package com.JAWolfe.TFCTweaker.Handlers;
 
-import com.JAWolfe.TFCTweaker.ReferenceList;
+import com.JAWolfe.TFCTweaker.util.ReferenceList;
 import com.bioxx.tfc.Core.TFC_Core;
 import com.bioxx.tfc.Items.ItemBloom;
 import com.bioxx.tfc.Items.ItemIngot;

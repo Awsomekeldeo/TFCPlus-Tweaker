@@ -1,9 +1,8 @@
 package com.JAWolfe.TFCTweaker.Handlers;
 
 import java.util.List;
-import java.util.Random;
 
-import com.JAWolfe.TFCTweaker.ReferenceList;
+import com.JAWolfe.TFCTweaker.util.ReferenceList;
 import com.bioxx.tfc.api.Crafting.AnvilManager;
 import com.bioxx.tfc.api.Crafting.AnvilRecipe;
 import com.bioxx.tfc.api.Crafting.AnvilReq;
@@ -22,7 +21,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class Anvil 
 {
 	@ZenMethod
-	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, IItemStack Input2, String plan, int AnvilReq, int craftingValue)
+	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, IItemStack Input2, String plan, int AnvilReq)
 	{
 		ItemStack result = MineTweakerMC.getItemStack(Output);
 		ItemStack input1 = MineTweakerMC.getItemStack(Input1);
@@ -44,16 +43,31 @@ public class Anvil
 			MineTweakerAPI.logError("Missing Plan Name");
 		else if(AnvilReq < 0 || AnvilReq > 7)
 			MineTweakerAPI.logError("Anvil type must be between 0 and 7, inclusive");
-		else if(craftingValue < 0 || craftingValue > 50)
-			MineTweakerAPI.logError("Crafting Value must be between 0 and 50, inclusive");
 		else
-			MineTweakerAPI.apply(new addAnvilRecipeAction(result, input1, input2, plan, AnvilReq, craftingValue));
+		{
+			if(AnvilRecipeHandler.world == null)
+				AnvilRecipeHandler.getInstance().addAnvilRecipe(new addAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+			else
+				MineTweakerAPI.apply(new addAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+		}
+	}
+	
+	@ZenMethod
+	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, String plan, int AnvilReq)
+	{
+		addAnvilRecipe(Output, Input1, null, plan, AnvilReq);
 	}
 	
 	@ZenMethod
 	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, String plan, int AnvilReq, int craftingValue)
 	{
-		addAnvilRecipe(Output, Input1, null, plan, AnvilReq, craftingValue);
+		addAnvilRecipe(Output, Input1, null, plan, AnvilReq);
+	}
+	
+	@ZenMethod
+	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, IItemStack Input2, String plan, int AnvilReq, int craftingValue)
+	{
+		addAnvilRecipe(Output, Input1, Input2, plan, AnvilReq);
 	}
 	
 	@ZenMethod
@@ -80,7 +94,12 @@ public class Anvil
 		else if(AnvilReq < 0 || AnvilReq > 7)
 			MineTweakerAPI.logError("Anvil type must be between 0 and 7, inclusive");
 		else
-			MineTweakerAPI.apply(new removeAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+		{
+			if(AnvilRecipeHandler.world == null)
+				AnvilRecipeHandler.getInstance().addAnvilRecipe(new removeAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+			else
+				MineTweakerAPI.apply(new removeAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+		}
 	}
 	
 	@ZenMethod
@@ -104,7 +123,7 @@ public class Anvil
 			MineTweakerAPI.logError("Missing OutputStack");
 		else if(AnvilReq < 0 || AnvilReq > 7)
 			MineTweakerAPI.logError("Anvil type must be between 0 and 7, inclusive");
-		else		
+		else
 			MineTweakerAPI.apply(new addWeldRecipeAction(result, input1, input2, AnvilReq));
 	}
 	
@@ -167,17 +186,15 @@ public class Anvil
 		ItemStack input2;
 		ItemStack result;
 		String plan;
-		int craftingvalue;
-		int anvilReq;
+		AnvilReq anvilReq;
 		
-		public addAnvilRecipeAction(ItemStack result, ItemStack input1, ItemStack input2, String plan, int anvilReq, int craftingValue)
+		public addAnvilRecipeAction(ItemStack result, ItemStack input1, ItemStack input2, String plan, int anvilReq)
 		{
 			this.input1 = input1;
 			this.input2 = input2;
 			this.result = result;
 			this.plan = plan;
-			this.anvilReq = anvilReq;
-			this.craftingvalue = 50 + craftingValue;
+			this.anvilReq = AnvilReq.getReqFromInt(anvilReq);
 		}
 		
 		@Override
@@ -189,7 +206,11 @@ public class Anvil
 			if(input2 != null)
 				ReferenceList.getInstance().addAnvilIngred(input2);
 			
-			AnvilManager.getInstance().addRecipe(new AnvilRecipe(input1, input2, plan, craftingvalue, false, anvilReq, result));
+			if(AnvilRecipeHandler.world != null)
+			{
+				AnvilManager.world = AnvilRecipeHandler.world;
+				AnvilManager.getInstance().addRecipe(new AnvilRecipe(input1, input2, plan, anvilReq, result));
+			}
 		}
 		
 		@Override
@@ -211,18 +232,23 @@ public class Anvil
 		public void undo() 
 		{			
 			List<AnvilRecipe> AnvilList = AnvilManager.getInstance().getRecipeList();
-			for (int i = 0; i < AnvilList.size(); i++)
+			
+			if(AnvilRecipeHandler.world != null)
 			{
-				if (AnvilList.get(i) != null)
+				AnvilManager.world = AnvilRecipeHandler.world;
+				for (int i = 0; i < AnvilList.size(); i++)
 				{
-					if(input2 != null)
+					if (AnvilList.get(i) != null)
 					{
-						if (AnvilList.get(i).matches(new AnvilRecipe(input1, input2, plan, craftingvalue, false, anvilReq, result)))
-							AnvilList.remove(i--);
+						if(input2 != null)
+						{
+							if (AnvilList.get(i).matches(new AnvilRecipe(input1, input2, plan, anvilReq, result)))
+								AnvilList.remove(i--);
+						}
+						else
+							if (AnvilList.get(i).matches(new AnvilRecipe(input1, null, plan, anvilReq, result)))
+								AnvilList.remove(i--);
 					}
-					else
-						if (AnvilList.get(i).matches(new AnvilRecipe(input1, null, plan, craftingvalue, false, anvilReq, result)))
-							AnvilList.remove(i--);
 				}
 			}
 		}
@@ -244,12 +270,11 @@ public class Anvil
 	
 	private static class removeAnvilRecipeAction implements IUndoableAction 
 	{
-		Random r = new Random();
 		ItemStack input1;
 		ItemStack input2;
 		ItemStack result;
 		String plan;
-		int anvilReq;
+		AnvilReq anvilReq;
 		
 		public removeAnvilRecipeAction(ItemStack result, ItemStack input1, ItemStack input2, String plan, int anvilReq)
 		{
@@ -257,25 +282,29 @@ public class Anvil
 			this.input2 = input2;
 			this.result = result;
 			this.plan = plan;
-			this.anvilReq = anvilReq;
+			this.anvilReq = AnvilReq.getReqFromInt(anvilReq);
 		}
 		
 		@Override
 		public void apply() 
-		{			
-			List<AnvilRecipe> AnvilList = AnvilManager.getInstance().getRecipeList();
-			for (int i = 0; i < AnvilList.size(); i++)
+		{	
+			if(AnvilRecipeHandler.world != null)
 			{
-				if (AnvilList.get(i) != null)
+				AnvilManager.world = AnvilRecipeHandler.world;
+				List<AnvilRecipe> AnvilList = AnvilManager.getInstance().getRecipeList();
+				for (int i = 0; i < AnvilList.size(); i++)
 				{
-					if(input2 != null)
+					if (AnvilList.get(i) != null)
 					{
-						if (AnvilList.get(i).matches(new AnvilRecipe(input1, input2, plan, 1, false, anvilReq, result)))
-							AnvilList.remove(i--);
+						if(input2 != null)
+						{
+							if(AnvilList.get(i).matches(new AnvilRecipe(input1, input2, plan, anvilReq, result)))
+								AnvilList.remove(i--);
+						}
+						else
+							if(AnvilList.get(i).matches(new AnvilRecipe(input1, null, plan, anvilReq, result)))
+								AnvilList.remove(i--);
 					}
-					else
-						if (AnvilList.get(i).matches(new AnvilRecipe(input1, null, plan, 1, false, anvilReq, result)))
-							AnvilList.remove(i--);
 				}
 			}
 		}
@@ -298,7 +327,17 @@ public class Anvil
 		@Override
 		public void undo() 
 		{	
-			AnvilManager.getInstance().addRecipe(new AnvilRecipe(input1, input2, plan, 70 + r.nextInt(50), false, anvilReq, result));
+			if(input1 != null)
+				ReferenceList.getInstance().addAnvilIngred(input1);
+			
+			if(input2 != null)
+				ReferenceList.getInstance().addAnvilIngred(input2);
+			
+			if(AnvilRecipeHandler.world != null)
+			{
+				AnvilManager.world = AnvilRecipeHandler.world;
+				AnvilManager.getInstance().addRecipe(new AnvilRecipe(input1, input2, plan, anvilReq, result));
+			}
 		}
 
 		@Override

@@ -1,0 +1,8 @@
+Changelog
+=================================================
+-------------------------------------------------
+TFC Tweaker 0.01.02
+-------------------------------------------------
+Anvil recipe removal should now register and not require a minetweaker reload to register
+Anvil recipes are now registered when the world is loaded and the recipe is based on world seed
+Anvil recipes no longer require a crafting value; recipes can still include crafting values but they are not used

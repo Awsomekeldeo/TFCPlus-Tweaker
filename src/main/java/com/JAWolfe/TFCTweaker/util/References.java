@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker;
+package com.JAWolfe.TFCTweaker.util;
 
 public class References 
 {
@@ -11,4 +11,7 @@ public class References
 	public static final String ModVersion = "@MOD_VERSION@";
 	
 	public static final String ModDependencies = "required-after:" + MODID_TFC;
+	
+	public static final String SERVER_PROXY_CLASS = "com.JAWolfe.TFCTweaker.proxy.CommonProxy";
+	public static final String CLIENT_PROXY_CLASS = "com.JAWolfe.TFCTweaker.proxy.ClientProxy";
 }
