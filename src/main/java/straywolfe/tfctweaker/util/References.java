@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker.util;
+package straywolfe.tfctweaker.util;
 
 public class References 
 {
@@ -12,6 +12,6 @@ public class References
 	
 	public static final String ModDependencies = "required-after:" + MODID_TFC;
 	
-	public static final String SERVER_PROXY_CLASS = "com.JAWolfe.TFCTweaker.proxy.CommonProxy";
-	public static final String CLIENT_PROXY_CLASS = "com.JAWolfe.TFCTweaker.proxy.ClientProxy";
+	public static final String SERVER_PROXY_CLASS = "straywolfe.tfctweaker.proxy.CommonProxy";
+	public static final String CLIENT_PROXY_CLASS = "straywolfe.tfctweaker.proxy.ClientProxy";
 }

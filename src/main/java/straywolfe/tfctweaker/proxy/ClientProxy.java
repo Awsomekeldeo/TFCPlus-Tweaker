@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker.proxy;
+package straywolfe.tfctweaker.proxy;
 
 public class ClientProxy extends CommonProxy
 {

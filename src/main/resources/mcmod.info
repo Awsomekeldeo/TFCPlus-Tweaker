@@ -3,18 +3,18 @@
     "modList": [{
         "modid": "TFCTweaker",
         "name": "TFC Tweaker",
-        "description": "Provides Minetweaker support for Terrafirmacraft ${tfc_version}.",
+        "description": "Provides Minetweaker ${mt_version} support for Terrafirmacraft ${tfc_version}.",
         "version": "${mod_version}",
         "mcversion": "${minecraft_version}",
         "url": "",
         "updateUrl": "",
-        "authorList": ["JAWolfe"],
+        "authorList": ["StrayWolfe"],
         "credits": "",
         "logoFile": "",
         "screenshots": [],
         "parent": "",
-        "requiredMods": ["Forge", "terrafirmacraft"],
-        "dependencies": ["terrafirmacraft"],
+        "requiredMods": ["Forge", "terrafirmacraft", "MineTweaker3"],
+        "dependencies": ["terrafirmacraft", "MineTweaker3"],
         "dependants": [],
         "useDependencyInformation": "true"
     }]

@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker.util;
+package straywolfe.tfctweaker.util;
 
 
 import java.util.ArrayList;

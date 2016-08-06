@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker.Handlers.Network;
+package straywolfe.tfctweaker.handlers.network;
 
 import com.bioxx.tfc.TerraFirmaCraft;
 import com.bioxx.tfc.Handlers.Network.AbstractPacket;

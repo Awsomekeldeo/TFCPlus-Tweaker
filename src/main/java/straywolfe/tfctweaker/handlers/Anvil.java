@@ -1,8 +1,7 @@
-package com.JAWolfe.TFCTweaker.Handlers;
+package straywolfe.tfctweaker.handlers;
 
 import java.util.List;
 
-import com.JAWolfe.TFCTweaker.util.ReferenceList;
 import com.bioxx.tfc.api.Crafting.AnvilManager;
 import com.bioxx.tfc.api.Crafting.AnvilRecipe;
 import com.bioxx.tfc.api.Crafting.AnvilReq;
@@ -16,6 +15,7 @@ import minetweaker.api.minecraft.MineTweakerMC;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import straywolfe.tfctweaker.util.ReferenceList;
 
 @ZenClass("mods.Terrafirmacraft.Anvil")
 public class Anvil 
@@ -140,8 +140,8 @@ public class Anvil
 			MineTweakerAPI.logError("Missing second InputStack");
 		else if(result == null || result.getItem() == null)
 			MineTweakerAPI.logError("Missing OutputStack");
-		else if(AnvilReq < 0 || AnvilReq > 7)
-			MineTweakerAPI.logError("Anvil type must be between 0 and 7, inclusive");
+		else if(AnvilReq < 0 || AnvilReq > 6)
+			MineTweakerAPI.logError("Anvil type must be between 0 and 6, inclusive");
 		else
 			MineTweakerAPI.apply(new removeWeldRecipeAction(result, input1, input2, AnvilReq));
 	}

@@ -1,11 +1,11 @@
-package com.JAWolfe.TFCTweaker.Handlers.Network;
+package straywolfe.tfctweaker.handlers.network;
 
-import com.JAWolfe.TFCTweaker.Handlers.AnvilRecipeHandler;
 import com.bioxx.tfc.Handlers.Network.AbstractPacket;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
+import straywolfe.tfctweaker.handlers.AnvilRecipeHandler;
 
 public class InitClientWorldPacket extends AbstractPacket
 {

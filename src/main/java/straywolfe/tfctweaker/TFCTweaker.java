@@ -1,11 +1,5 @@
-package com.JAWolfe.TFCTweaker;
+package straywolfe.tfctweaker;
 
-import com.JAWolfe.TFCTweaker.Handlers.*;
-import com.JAWolfe.TFCTweaker.Handlers.Network.ChunkEventHandler;
-import com.JAWolfe.TFCTweaker.Handlers.Network.InitClientWorldPacket;
-import com.JAWolfe.TFCTweaker.Handlers.Network.PlayerTracker;
-import com.JAWolfe.TFCTweaker.proxy.CommonProxy;
-import com.JAWolfe.TFCTweaker.util.References;
 import com.bioxx.tfc.TerraFirmaCraft;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -17,6 +11,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import minetweaker.MineTweakerAPI;
 import net.minecraftforge.common.MinecraftForge;
+import straywolfe.tfctweaker.handlers.*;
+import straywolfe.tfctweaker.handlers.network.ChunkEventHandler;
+import straywolfe.tfctweaker.handlers.network.InitClientWorldPacket;
+import straywolfe.tfctweaker.handlers.network.PlayerTracker;
+import straywolfe.tfctweaker.proxy.CommonProxy;
+import straywolfe.tfctweaker.util.References;
 
 @Mod(modid = References.ModID, name = References.ModName, version = References.ModVersion, dependencies = References.ModDependencies)
 public class TFCTweaker 

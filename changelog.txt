@@ -1,6 +1,12 @@
 Changelog
 =================================================
 -------------------------------------------------
+TFC Tweaker 0.1.3.0
+-------------------------------------------------
+Added methods to add and remove recipes for Fire Clay
+Changed formatting to be consistant with standard formats
+
+-------------------------------------------------
 TFC Tweaker 0.01.02
 -------------------------------------------------
 Anvil recipe removal should now register and not require a minetweaker reload to register

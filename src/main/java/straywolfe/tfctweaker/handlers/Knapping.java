@@ -1,4 +1,4 @@
-package com.JAWolfe.TFCTweaker.Handlers;
+package straywolfe.tfctweaker.handlers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +32,19 @@ public class Knapping
     public static void removeClayWorkingRecipe(IItemStack output, String topRow, String secondRow, String thirdRow, String fourthRow, String bottomRow) 
 	{
 		processInputs(output, topRow, secondRow, thirdRow, fourthRow, bottomRow, 0, false);
+	}
+	
+	//Fireclay Working
+	@ZenMethod
+    public static void addFireClayWorkingRecipe(IItemStack output, String topRow, String secondRow, String thirdRow, String fourthRow, String bottomRow) 
+	{
+		processInputs(output, topRow, secondRow, thirdRow, fourthRow, bottomRow, 3, true);
+	}
+	
+	@ZenMethod
+    public static void removeFireClayWorkingRecipe(IItemStack output, String topRow, String secondRow, String thirdRow, String fourthRow, String bottomRow) 
+	{
+		processInputs(output, topRow, secondRow, thirdRow, fourthRow, bottomRow, 3, false);
 	}
 			
 	//Leather Working
@@ -80,6 +93,8 @@ public class Knapping
 				this.KnappingIS = new ItemStack(TFCItems.flatLeather, 1);
 			else if(type == 2)
 				this.KnappingIS = new ItemStack(TFCItems.flatRock, 1, OreDictionary.WILDCARD_VALUE);
+			else if(type == 3)
+				this.KnappingIS = new ItemStack(TFCItems.flatClay, 1, 3);
 			
 			this.recipe = createRecipe(outputStack, new Object[] {pattern[0], pattern[1], pattern[2], pattern[3], pattern[4], '#', this.KnappingIS});
 		}
@@ -99,6 +114,8 @@ public class Knapping
 				return "Adding item '" + outputStack.getDisplayName() + "' to leather working recipes'";
 			else if(KnappingType == 2)
 				return "Adding item '" + outputStack.getDisplayName() + "' to stone knapping recipes'";
+			else if(KnappingType == 3)
+				return "Adding item '" + outputStack.getDisplayName() + "' to fireclay working recipes'";
 			else
 				return "Adding item '" + outputStack.getDisplayName() + "' to knapping recipes'";
 		}
@@ -135,6 +152,8 @@ public class Knapping
 				return "Removing item '" + outputStack.getDisplayName() + "' from leather working recipes.'";
 			else if(KnappingType == 2)
 				return "Removing item '" + outputStack.getDisplayName() + "' from stone knapping recipes.'";
+			else if(KnappingType == 3)
+				return "Removing item '" + outputStack.getDisplayName() + "' from fireclay working recipes.'";
 			else
 				return "Removing item '" + outputStack.getDisplayName() + "' from knapping recipes.'";
 		}
@@ -165,6 +184,8 @@ public class Knapping
 				this.KnappingIS = new ItemStack(TFCItems.flatLeather, 1);
 			else if(type == 2)
 				this.KnappingIS = new ItemStack(TFCItems.flatRock, 1, OreDictionary.WILDCARD_VALUE);
+			else if(type == 3)
+				this.KnappingIS = new ItemStack(TFCItems.flatClay, 1, 3);
 			
 			this.recipe = createRecipe(outputStack, new Object[] {pattern[0], pattern[1], pattern[2], pattern[3], pattern[4], '#', this.KnappingIS});
 		}
@@ -195,6 +216,8 @@ public class Knapping
 				return "Removing item '" + outputStack.getDisplayName() + "' from leather working recipes.'";
 			else if(KnappingType == 2)
 				return "Removing item '" + outputStack.getDisplayName() + "' from stone knapping recipes.'";
+			else if(KnappingType == 3)
+				return "Removing item '" + outputStack.getDisplayName() + "' from fireclay working recipes.'";
 			else
 				return "Removing item '" + outputStack.getDisplayName() + "' from knapping recipes.'";
 		}
@@ -220,6 +243,8 @@ public class Knapping
 				return "Adding item '" + outputStack.getDisplayName() + "' to leather working recipes'";
 			else if(KnappingType == 2)
 				return "Adding item '" + outputStack.getDisplayName() + "' to stone knapping recipes'";
+			else if(KnappingType == 3)
+				return "Adding item '" + outputStack.getDisplayName() + "' to fireclay working recipes'";
 			else
 				return "Adding item '" + outputStack.getDisplayName() + "' to knapping recipes'";
 		}

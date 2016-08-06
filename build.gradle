@@ -5,7 +5,7 @@ buildscript
         mavenCentral()
         maven 
 		{
-            name = "forge"
+            name = "Minecraft Forge"
             url = "http://files.minecraftforge.net/maven"
         }
         maven 
@@ -20,13 +20,10 @@ buildscript
     }
 }
 
-// define the properties file
 ext.configFile = file "build.prop"
-
 
 configFile.withReader 
 {
-    // read config.  it shall from now on be referenced as simply config or as project.config
     def prop = new Properties()
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
@@ -40,14 +37,14 @@ allprojects
 	
 	group = config.group_name
 	version = config.mod_version
-	archivesBaseName = config.mod_id + "-" + config.minecraft_version
+	archivesBaseName = config.mod_id
 
 	minecraft 
 	{
 		version = config.minecraft_version + "-" + config.forge_version
 		
 		replaceIn "References.java"
-		replace "@MOD_VERSION@", config.mod_version
+		replace "@MOD_VERSION@", "${config.mod_version}"
 	
 		if(file('../run').exists()) 
 		{
@@ -62,36 +59,39 @@ allprojects
 
 dependencies {}
 
-//Creates a compiled de-obfuscated jar
 task deobfJar(type: Jar){
     from sourceSets.main.output
     appendix = 'deobf'
 }
 
-//creates a jar containing only the src
 task sourceJar(type: Jar){
     from sourceSets.main.allSource
     appendix = 'src'
 }
 
+project.version = "${config.minecraft_version}-${config.mod_version}"
+
 tasks.build.dependsOn('sourceJar', 'deobfJar')
 
 processResources 
 {
-	// First we just copy in the mcmod.info file
+	inputs.property "mod_version", project.version
+	inputs.property "tfc_version", project.config.tfc_version
+	inputs.property "mt_version", project.config.mt_version
+    inputs.property "minecraft_version", project.config.minecraft_version
+	
 	from(sourceSets.main.resources.srcDirs) 
 	{
         include '**/*.info'
         include '**/*.prop'
 
-        // replaces
         expand ([
-            'mod_version': project.config.mod_version,
+            'mod_version': project.version,
             'tfc_version': project.config.tfc_version,
+			'mt_version': project.config.mt_version,
             'minecraft_version': project.config.minecraft_version,
         ])
     }
-    // copy everything else, that we didn't copy before
     from(sourceSets.main.resources.srcDirs) 
 	{
         exclude '**/*.info'

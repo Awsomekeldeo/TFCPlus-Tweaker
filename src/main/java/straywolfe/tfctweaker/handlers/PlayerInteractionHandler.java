@@ -1,6 +1,5 @@
-package com.JAWolfe.TFCTweaker.Handlers;
+package straywolfe.tfctweaker.handlers;
 
-import com.JAWolfe.TFCTweaker.util.ReferenceList;
 import com.bioxx.tfc.Core.TFC_Core;
 import com.bioxx.tfc.Items.ItemBloom;
 import com.bioxx.tfc.Items.ItemIngot;
@@ -18,6 +17,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import straywolfe.tfctweaker.util.ReferenceList;
 
 public class PlayerInteractionHandler 
 {

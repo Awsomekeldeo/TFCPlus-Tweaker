@@ -1,8 +1,7 @@
-package com.JAWolfe.TFCTweaker.proxy;
-
-import com.JAWolfe.TFCTweaker.Handlers.Network.ServerTickHandling;
+package straywolfe.tfctweaker.proxy;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import straywolfe.tfctweaker.handlers.network.ServerTickHandling;
 
 public class CommonProxy 
 {
