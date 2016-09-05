@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ReferenceList 
 {
@@ -34,14 +35,8 @@ public class ReferenceList
 		for(int i = 0; i < anvilIngredList.size(); i++)
 		{
 			ItemStack listIS = anvilIngredList.get(i);
-			if(is != null && listIS != null)
-			{
-				if(is.getItem() == listIS.getItem())
-				{
-					if(is.getItemDamage() == listIS.getItemDamage())
-						return true;
-				}
-			}
+			if(OreDictionary.itemMatches(listIS, is, false))
+				return true;
 		}
 		return false;
 	}

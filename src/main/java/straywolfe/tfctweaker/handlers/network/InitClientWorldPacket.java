@@ -5,7 +5,7 @@ import com.bioxx.tfc.Handlers.Network.AbstractPacket;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
-import straywolfe.tfctweaker.handlers.AnvilRecipeHandler;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilRecipeHandler;
 
 public class InitClientWorldPacket extends AbstractPacket
 {

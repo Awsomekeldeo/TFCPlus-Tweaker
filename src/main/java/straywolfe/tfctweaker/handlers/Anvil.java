@@ -10,18 +10,22 @@ import com.bioxx.tfc.api.Enums.RuleEnum;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
+import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.minecraft.MineTweakerMC;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilRecipeHandler;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilTransformationHandler;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilTransformationRecipe;
 import straywolfe.tfctweaker.util.ReferenceList;
 
 @ZenClass("mods.Terrafirmacraft.Anvil")
 public class Anvil 
 {
 	@ZenMethod
-	public static void addAnvilRecipe(IItemStack Output, IItemStack Input1, IItemStack Input2, String plan, int AnvilReq)
+	public static void addAnvilRecipe(IItemStack Output, IIngredient Input1, IIngredient Input2, String plan, int AnvilReq)
 	{
 		ItemStack result = MineTweakerMC.getItemStack(Output);
 		ItemStack input1 = MineTweakerMC.getItemStack(Input1);
@@ -49,6 +53,11 @@ public class Anvil
 				AnvilRecipeHandler.getInstance().addAnvilRecipe(new addAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
 			else
 				MineTweakerAPI.apply(new addAnvilRecipeAction(result, input1, input2, plan, AnvilReq));
+			
+			if(Input1 != null && Input1.hasTransformers())
+				MineTweakerAPI.apply(new addAnvilTransformationAction(Output, Input1, Input2, plan, AnvilReq));
+			else if(Input2 != null && Input2.hasTransformers())
+				MineTweakerAPI.apply(new addAnvilTransformationAction(Output, Input1, Input2, plan, AnvilReq));
 		}
 	}
 	
@@ -266,6 +275,57 @@ public class Anvil
 		public Object getOverrideKey() {
 			return null;
 		}		
+	}
+	
+	private static class addAnvilTransformationAction implements IUndoableAction 
+	{
+		IIngredient input1;
+		IIngredient input2;
+		IItemStack result;
+		String plan;
+		int anvilReq;
+		
+		public addAnvilTransformationAction(IItemStack result, IIngredient input1, IIngredient input2, String plan, int anvilReq)
+		{
+			this.result = result;
+			this.input1 = input1;
+			this.input2 = input2;
+			this.plan = plan;
+			this.anvilReq = anvilReq;
+		}
+		
+		@Override
+		public void apply() 
+		{
+			AnvilTransformationHandler.getInstance().addTransformation(new AnvilTransformationRecipe(result, input1, input2, plan, anvilReq));
+		}
+		
+		@Override
+		public String describe() 
+		{
+			return "";
+		}
+		
+		@Override
+		public boolean canUndo() 
+		{
+			return true;
+		}
+		
+		@Override
+		public void undo() 
+		{
+			AnvilTransformationHandler.getInstance().removeTransformation(new AnvilTransformationRecipe(result, input1, input2, plan, anvilReq));
+		}
+		
+		@Override
+		public String describeUndo() 
+		{
+			return "";
+		}
+
+		@Override
+		public Object getOverrideKey() { return null; }
 	}
 	
 	private static class removeAnvilRecipeAction implements IUndoableAction 

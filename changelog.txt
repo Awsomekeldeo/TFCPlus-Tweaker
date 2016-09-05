@@ -1,6 +1,12 @@
 Changelog
 =================================================
 -------------------------------------------------
+TFC Tweaker 1.1.4.0
+-------------------------------------------------
+Added item transformation support to the addAnvilRecipe methods
+Remove duplicate item heat in tool tip for TFC Armor
+
+-------------------------------------------------
 TFC Tweaker 0.1.3.0
 -------------------------------------------------
 Added methods to add and remove recipes for Fire Clay

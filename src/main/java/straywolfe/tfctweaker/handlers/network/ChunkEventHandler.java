@@ -2,7 +2,7 @@ package straywolfe.tfctweaker.handlers.network;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import straywolfe.tfctweaker.handlers.AnvilRecipeHandler;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilRecipeHandler;
 
 public class ChunkEventHandler 
 {

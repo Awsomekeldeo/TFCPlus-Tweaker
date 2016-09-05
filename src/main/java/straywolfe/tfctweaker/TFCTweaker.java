@@ -12,6 +12,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import minetweaker.MineTweakerAPI;
 import net.minecraftforge.common.MinecraftForge;
 import straywolfe.tfctweaker.handlers.*;
+import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilCraftingHandler;
 import straywolfe.tfctweaker.handlers.network.ChunkEventHandler;
 import straywolfe.tfctweaker.handlers.network.InitClientWorldPacket;
 import straywolfe.tfctweaker.handlers.network.PlayerTracker;
@@ -37,6 +38,7 @@ public class TFCTweaker
 		FMLCommonHandler.instance().bus().register(new PlayerTracker());
 		MinecraftForge.EVENT_BUS.register(new ChunkEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PlayerInteractionHandler());
+		MinecraftForge.EVENT_BUS.register(new AnvilCraftingHandler());
 		
 		if (Loader.isModLoaded("MineTweaker3"))
 		{

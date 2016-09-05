@@ -4,6 +4,7 @@ import com.bioxx.tfc.Core.TFC_Core;
 import com.bioxx.tfc.Items.ItemBloom;
 import com.bioxx.tfc.Items.ItemIngot;
 import com.bioxx.tfc.Items.ItemMetalSheet;
+import com.bioxx.tfc.Items.ItemTFCArmor;
 import com.bioxx.tfc.Items.ItemTerra;
 import com.bioxx.tfc.Items.ItemUnfinishedArmor;
 import com.bioxx.tfc.Items.ItemBlocks.ItemTerraBlock;
@@ -26,7 +27,8 @@ public class PlayerInteractionHandler
 	{
 		ItemStack object = event.itemStack;
 		
-		if(!(object.getItem() instanceof ItemTerra || object.getItem() instanceof ItemTerraBlock))
+		if(!(object.getItem() instanceof ItemTerra || object.getItem() instanceof ItemTerraBlock
+				|| object.getItem() instanceof ItemTFCArmor))
 		{
 			if (object.hasTagCompound())
 			{
@@ -56,7 +58,6 @@ public class PlayerInteractionHandler
 			{
 				if(TFC_ItemHeat.hasTemp(object))
 				{
-					
 					if(ReferenceList.getInstance().isAnvilInged(object))
 					{
 						String s = "";
