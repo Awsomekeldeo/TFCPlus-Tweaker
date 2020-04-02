@@ -1,9 +1,9 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
 import java.util.List;
 
-import com.bioxx.tfc.api.Crafting.QuernManager;
-import com.bioxx.tfc.api.Crafting.QuernRecipe;
+import com.dunk.tfc.api.Crafting.QuernManager;
+import com.dunk.tfc.api.Crafting.QuernRecipe;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;

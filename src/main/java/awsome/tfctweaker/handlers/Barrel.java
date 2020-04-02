@@ -1,10 +1,10 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
 import java.util.List;
 
-import com.bioxx.tfc.api.Crafting.BarrelLiquidToLiquidRecipe;
-import com.bioxx.tfc.api.Crafting.BarrelManager;
-import com.bioxx.tfc.api.Crafting.BarrelRecipe;
+import com.dunk.tfc.api.Crafting.BarrelLiquidToLiquidRecipe;
+import com.dunk.tfc.api.Crafting.BarrelManager;
+import com.dunk.tfc.api.Crafting.BarrelRecipe;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;

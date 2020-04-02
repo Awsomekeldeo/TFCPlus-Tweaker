@@ -1,9 +1,9 @@
-package straywolfe.tfctweaker.handlers.network;
+package awsome.tfctweaker.handlers.network;
 
+import awsome.tfctweaker.handlers.anvilHandlers.AnvilRecipeHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
-import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilRecipeHandler;
 
 public class ServerTickHandling 
 {

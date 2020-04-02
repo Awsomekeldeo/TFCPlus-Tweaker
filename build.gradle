@@ -1,100 +1,114 @@
-buildscript 
-{
-    repositories 
-	{
+buildscript {
+    repositories {
         mavenCentral()
-        maven 
-		{
+        maven {
             name = "Minecraft Forge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven 
-		{
+		 maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
-    dependencies 
-	{
+    dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
+// define the properties file
 ext.configFile = file "build.prop"
 
-configFile.withReader 
-{
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
     def prop = new Properties()
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-allprojects 
-{
-	apply plugin: 'java'
-	apply plugin: 'forge'
-	apply plugin: 'maven'
-	
-	group = config.group_name
-	version = config.mod_version
-	archivesBaseName = config.mod_id
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'forge'
+    apply plugin: 'maven'
+    group = config.group_name
+    version = config.mod_version
+	archivesBaseName = "${config.minecraft_version}-${config.mod_id}"
 
-	minecraft 
-	{
-		version = config.minecraft_version + "-" + config.forge_version
-		
-		replaceIn "References.java"
-		replace "@MOD_VERSION@", "${config.mod_version}"
-	
-		if(file('../run').exists()) 
-		{
-			runDir = "../run"
-		} 
-		else 
-		{
-			runDir = ""
-		}
+    minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+	if(file('../run').exists()) {
+		runDir = "../run"
+	} else {
+		runDir = "run"
+		if (!file(runDir).exists()) file(runDir).mkdir()
 	}
 }
 
-dependencies {}
+repositories {
+    maven { // The repo from which to get waila
+        name "Mobius Repo"
+        url "http://mobiusstrip.eu/maven"
+    }
+    maven { // the repo from which to get NEI and stuff 
+        name 'CB Repo'
+        url "http://chickenbones.net/maven/"
+    }
+}
+ 
+dependencies {
+	compile files('libs/MineTweaker3-Dev-1.7.10-3.0.10B.jar')
+	compile files('libs/[1.7.10]TerraFirmaCraftPlus-deobf-0.83.4.jar')
+}
+}
 
-task deobfJar(type: Jar){
+sourceSets {
+   main {
+     java {
+       srcDirs = [ 'src/main/java' ]
+     }
+	 resources {
+       srcDirs = [ 'src/main/resources' ]
+     }
+   }
+}
+ //Creates a compiled de-obfuscated jar
+task deobfJar(type: Jar) {
     from sourceSets.main.output
     appendix = 'deobf'
 }
-
-task sourceJar(type: Jar){
+ //creates a jar containing only the src
+task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     appendix = 'src'
 }
 
-project.version = "${config.minecraft_version}-${config.mod_version}"
-
 tasks.build.dependsOn('sourceJar', 'deobfJar')
 
-processResources 
-{
+processResources {
+//First we just copy in the mcmod.info file
 	inputs.property "mod_version", project.version
 	inputs.property "tfc_version", project.config.tfc_version
 	inputs.property "mt_version", project.config.mt_version
     inputs.property "minecraft_version", project.config.minecraft_version
 	
-	from(sourceSets.main.resources.srcDirs) 
-	{
+from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
         include '**/*.prop'
 
+        // replaces
         expand ([
-            'mod_version': project.version,
-            'tfc_version': project.config.tfc_version,
+            'mod_version': version,
+			'tfc_version': project.config.tfc_version,
 			'mt_version': project.config.mt_version,
             'minecraft_version': project.config.minecraft_version,
         ])
     }
-    from(sourceSets.main.resources.srcDirs) 
-	{
+     // copy everything else, thats we didnt do before
+    from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
         exclude '**/*.prop'
     }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
 }

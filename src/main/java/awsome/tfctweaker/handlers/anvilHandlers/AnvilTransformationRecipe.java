@@ -1,4 +1,4 @@
-package straywolfe.tfctweaker.handlers.anvilHandlers;
+package awsome.tfctweaker.handlers.anvilHandlers;
 
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;

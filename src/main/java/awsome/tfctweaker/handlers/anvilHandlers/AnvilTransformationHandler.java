@@ -1,4 +1,4 @@
-package straywolfe.tfctweaker.handlers.anvilHandlers;
+package awsome.tfctweaker.handlers.anvilHandlers;
 
 import java.util.ArrayList;
 import java.util.List;

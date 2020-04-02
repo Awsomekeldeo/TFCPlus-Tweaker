@@ -1,4 +1,4 @@
-package straywolfe.tfctweaker.util;
+package awsome.tfctweaker.util;
 
 import org.apache.logging.log4j.Level;
 

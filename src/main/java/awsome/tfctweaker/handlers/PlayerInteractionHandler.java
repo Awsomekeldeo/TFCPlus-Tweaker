@@ -1,24 +1,24 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
-import com.bioxx.tfc.Core.TFC_Core;
-import com.bioxx.tfc.Items.ItemBloom;
-import com.bioxx.tfc.Items.ItemIngot;
-import com.bioxx.tfc.Items.ItemMetalSheet;
-import com.bioxx.tfc.Items.ItemTFCArmor;
-import com.bioxx.tfc.Items.ItemTerra;
-import com.bioxx.tfc.Items.ItemUnfinishedArmor;
-import com.bioxx.tfc.Items.ItemBlocks.ItemTerraBlock;
-import com.bioxx.tfc.TileEntities.TEAnvil;
-import com.bioxx.tfc.api.HeatIndex;
-import com.bioxx.tfc.api.HeatRegistry;
-import com.bioxx.tfc.api.TFCItems;
-import com.bioxx.tfc.api.TFC_ItemHeat;
+import com.dunk.tfc.Core.TFC_Core;
+import com.dunk.tfc.Items.ItemBloom;
+import com.dunk.tfc.Items.ItemIngot;
+import com.dunk.tfc.Items.ItemMetalSheet;
+import com.dunk.tfc.Items.ItemTFCArmor;
+import com.dunk.tfc.Items.ItemTerra;
+import com.dunk.tfc.Items.ItemUnfinishedArmor;
+import com.dunk.tfc.Items.ItemBlocks.ItemTerraBlock;
+import com.dunk.tfc.TileEntities.TEAnvil;
+import com.dunk.tfc.api.HeatIndex;
+import com.dunk.tfc.api.HeatRegistry;
+import com.dunk.tfc.api.TFCItems;
+import com.dunk.tfc.api.TFC_ItemHeat;
 
+import awsome.tfctweaker.util.ReferenceList;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import straywolfe.tfctweaker.util.ReferenceList;
 
 public class PlayerInteractionHandler 
 {

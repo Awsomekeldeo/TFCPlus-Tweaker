@@ -1,10 +1,10 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
 import java.util.List;
 
-import com.bioxx.tfc.Reference;
-import com.bioxx.tfc.api.Crafting.LoomManager;
-import com.bioxx.tfc.api.Crafting.LoomRecipe;
+import com.dunk.tfc.Reference;
+import com.dunk.tfc.api.Crafting.LoomManager;
+import com.dunk.tfc.api.Crafting.LoomRecipe;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;

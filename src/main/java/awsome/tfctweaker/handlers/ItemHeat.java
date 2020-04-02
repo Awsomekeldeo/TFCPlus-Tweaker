@@ -1,10 +1,10 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
 import java.util.List;
 
-import com.bioxx.tfc.api.HeatIndex;
-import com.bioxx.tfc.api.HeatRegistry;
-import com.bioxx.tfc.api.Interfaces.ISmeltable;
+import com.dunk.tfc.api.HeatIndex;
+import com.dunk.tfc.api.HeatRegistry;
+import com.dunk.tfc.api.Interfaces.ISmeltable;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;

@@ -1,7 +1,14 @@
-package straywolfe.tfctweaker;
+package awsome.tfctweaker;
 
-import com.bioxx.tfc.TerraFirmaCraft;
+import com.dunk.tfc.TerraFirmaCraft;
 
+import awsome.tfctweaker.handlers.*;
+import awsome.tfctweaker.handlers.anvilHandlers.AnvilCraftingHandler;
+import awsome.tfctweaker.handlers.network.ChunkEventHandler;
+import awsome.tfctweaker.handlers.network.InitClientWorldPacket;
+import awsome.tfctweaker.handlers.network.PlayerTracker;
+import awsome.tfctweaker.proxy.CommonProxy;
+import awsome.tfctweaker.util.References;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -11,16 +18,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import minetweaker.MineTweakerAPI;
 import net.minecraftforge.common.MinecraftForge;
-import straywolfe.tfctweaker.handlers.*;
-import straywolfe.tfctweaker.handlers.anvilHandlers.AnvilCraftingHandler;
-import straywolfe.tfctweaker.handlers.network.ChunkEventHandler;
-import straywolfe.tfctweaker.handlers.network.InitClientWorldPacket;
-import straywolfe.tfctweaker.handlers.network.PlayerTracker;
-import straywolfe.tfctweaker.proxy.CommonProxy;
-import straywolfe.tfctweaker.util.References;
 
 @Mod(modid = References.ModID, name = References.ModName, version = References.ModVersion, dependencies = References.ModDependencies)
-public class TFCTweaker 
+public class TFCPlusTweaker 
 {
 	@SidedProxy(clientSide = References.CLIENT_PROXY_CLASS, serverSide = References.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;

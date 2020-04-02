@@ -1,7 +1,7 @@
-package straywolfe.tfctweaker.handlers.anvilHandlers;
+package awsome.tfctweaker.handlers.anvilHandlers;
 
-import com.bioxx.tfc.TileEntities.TEAnvil;
-import com.bioxx.tfc.api.Events.AnvilCraftEvent;
+import com.dunk.tfc.TileEntities.TEAnvil;
+import com.dunk.tfc.api.Events.AnvilCraftEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import minetweaker.api.item.IItemStack;

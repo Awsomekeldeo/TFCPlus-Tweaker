@@ -1,11 +1,11 @@
-package straywolfe.tfctweaker.handlers;
+package awsome.tfctweaker.handlers;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.bioxx.tfc.api.TFCItems;
-import com.bioxx.tfc.api.Crafting.CraftingManagerTFC;
-import com.bioxx.tfc.api.Crafting.ShapedRecipesTFC;
+import com.dunk.tfc.api.TFCItems;
+import com.dunk.tfc.api.Crafting.CraftingManagerTFC;
+import com.dunk.tfc.api.Crafting.ShapedRecipesTFC;
 
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;

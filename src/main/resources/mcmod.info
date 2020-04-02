@@ -1,9 +1,9 @@
 {
     "modListVersion": 2,
     "modList": [{
-        "modid": "TFCTweaker",
-        "name": "TFC Tweaker",
-        "description": "Provides Minetweaker ${mt_version} support for Terrafirmacraft ${tfc_version}.",
+        "modid": "TFCPlusTweaker",
+        "name": "TFC+ Tweaker",
+        "description": "Provides Minetweaker ${mt_version} support for Terrafirmacraft ${tfc_version}. Ported to TFC+ by Awsomekeldeo",
         "version": "${mod_version}",
         "mcversion": "${minecraft_version}",
         "url": "",
@@ -13,8 +13,8 @@
         "logoFile": "",
         "screenshots": [],
         "parent": "",
-        "requiredMods": ["Forge", "terrafirmacraft", "MineTweaker3"],
-        "dependencies": ["terrafirmacraft", "MineTweaker3"],
+        "requiredMods": ["Forge", "terrafirmacraftplus", "MineTweaker3"],
+        "dependencies": ["terrafirmacraftplus", "MineTweaker3"],
         "dependants": [],
         "useDependencyInformation": "true"
     }]
