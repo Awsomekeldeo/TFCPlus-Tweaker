@@ -1,2 +1,2 @@
 # TFC-Tweaker
-Provides Minetweaker support for Terrafirmacraft
+Provides Minetweaker support for Terrafirmacraftplus
