@@ -393,7 +393,7 @@ public class Anvil
 			if(input2 != null)
 				ReferenceList.getInstance().addAnvilIngred(input2);
 			
-			if(AnvilRecipeHandler.world != null)
+			if(AnvilRecipeHandler.world != null && AnvilManager.getInstance().getPlan(plan) != null)
 			{
 				AnvilManager.world = AnvilRecipeHandler.world;
 				AnvilManager.getInstance().addRecipe(new AnvilRecipe(input1, input2, plan, anvilReq, result));
